@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">military_quest</string>
+
+    <string name="common_private">비공개</string>
+    <string name="common_public">공개</string>
+
+</resources>

@@ -1,0 +1,24 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Military_quest" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">#222222</item>
+        <item name="android:navigationBarColor">#222222</item>
+        <item name="android:windowBackground">#222222</item>
+        <!-- Customize your theme here. -->
+
+        <!-- 상단 Title 배경색 -->
+        <item name="colorAccent">#222222</item>
+        <!-- 선택한 날짜 배경 색 -->
+        <item name="colorControlActivated">#222222</item>
+
+    </style>
+</resources>
