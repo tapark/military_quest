@@ -8,10 +8,13 @@ class InitInfoViewModel: BaseViewModel() {
     var isPrivateName = MutableLiveData<Boolean>(false)
     var isPrivateBirth = MutableLiveData<Boolean>(false)
     var isPrivateCompany = MutableLiveData<Boolean>(false)
-    var isPrivateMainClass  = MutableLiveData<Boolean>(false)
-    var isPrivateSubClass  = MutableLiveData<Boolean>(false)
+    var isPrivateClass  = MutableLiveData<Boolean>(false)
     var isPrivateEnterDate = MutableLiveData<Boolean>(false)
     var isPrivateRetireDate = MutableLiveData<Boolean>(false)
+
+    var nameText = MutableLiveData<String>("")
+    var companyText = MutableLiveData<String>("")
+    var rankText = MutableLiveData<String>("")
 
     var birthDate = MutableLiveData<String>("")
     var enterDate = MutableLiveData<String>("")
@@ -27,11 +30,8 @@ class InitInfoViewModel: BaseViewModel() {
     fun onCompanyClicked() {
         isPrivateCompany.value = !isPrivateCompany.value!!
     }
-    fun onMainClassClicked() {
-        isPrivateMainClass.value = !isPrivateMainClass.value!!
-    }
-    fun onSubClassClicked() {
-        isPrivateSubClass.value = !isPrivateSubClass.value!!
+    fun onClassClicked() {
+        isPrivateClass.value = !isPrivateClass.value!!
     }
     fun onEnterDateClicked() {
         isPrivateEnterDate.value = !isPrivateEnterDate.value!!

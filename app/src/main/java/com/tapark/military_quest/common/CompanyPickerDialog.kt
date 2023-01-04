@@ -21,7 +21,7 @@ class CompanyPickerDialog(val onClicked : (String) -> Unit): DialogFragment() {
 
     private val activeList = mutableListOf<String>("육군", "해군", "공군", "해병", "의무경찰", "해양의무경찰", "의무소방")
 
-    private val supplyList = mutableListOf<String>("사회복무요원", "산업기능요원(보충역)", "산업기능요원(현역)", "전믄연구요원", "예술체육요원", "대체복무요원")
+    private val supplyList = mutableListOf<String>("사회복무요원", "산업기능요원(보충역)", "산업기능요원(현역)", "전문연구요원", "예술체육요원", "대체복무요원")
 
     private val reserveList = mutableListOf<String>("상근예비역", "승선근무예비역")
 

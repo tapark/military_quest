@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.tapark.military_quest.data.UserInfo
 
 
 @SuppressLint("StaticFieldLeak")
@@ -12,6 +13,8 @@ object PrefManager {
 
     private lateinit var context: Context
     private lateinit var prefs: SharedPreferences
+
+    const val KEY_USER_INFO = "KEY_USER_INFO"
 
     fun init(mContext: Context) {
         context = mContext
@@ -29,6 +32,15 @@ object PrefManager {
 
     fun setIntList(key: String, list: MutableList<Int>) {
         val json = Gson().toJson(list)
+        prefs.edit().putString(key, json).apply()
+    }
+
+    fun getUserInfo(key: String): UserInfo? {
+        val json = prefs.getString(key, null)
+        return Gson().fromJson(json, object: TypeToken<UserInfo>() {}.type)
+    }
+    fun setUserInfo(key: String, userInfo: UserInfo) {
+        val json = Gson().toJson(userInfo)
         prefs.edit().putString(key, json).apply()
     }
 

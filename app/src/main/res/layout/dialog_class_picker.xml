@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
+        app:cardBackgroundColor="#222222"
+        app:cardElevation="0dp">
+
+        <LinearLayout
+            android:id="@+id/militaryLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#222222"
+            android:padding="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="병사"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:textStyle="bold|italic"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/soldierRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="2dp"
+                android:text="부사관"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:textStyle="bold|italic"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/subOfficerRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="2dp"
+                android:text="장교"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:textStyle="bold|italic"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/officerRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/etcLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#222222"
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/etcTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="기타"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:textStyle="bold|italic"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/etcRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>
