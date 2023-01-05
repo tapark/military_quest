@@ -2,11 +2,11 @@ package com.tapark.military_quest.account
 
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.fragment.app.viewModels
+import com.tapark.military_quest.MainActivity
 import com.tapark.military_quest.R
-import com.tapark.military_quest.Utils.PrefManager
-import com.tapark.military_quest.Utils.PrefManager.KEY_USER_INFO
+import com.tapark.military_quest.utils.PrefManager
+import com.tapark.military_quest.utils.PrefManager.KEY_USER_INFO
 import com.tapark.military_quest.base.BaseFragment
 import com.tapark.military_quest.common.ClassPickerDialog
 import com.tapark.military_quest.common.CompanyPickerDialog
@@ -44,9 +44,9 @@ class InitInfoFragment: BaseFragment<FragmentInitInfoBinding, InitInfoViewModel>
             companyText.value = "육군"
             rankText.value = "일병"
         }
-        Log.d("박태규", "userInfo : ${PrefManager.getUserInfo(KEY_USER_INFO)}")
-        val userInfo = PrefManager.getUserInfo(KEY_USER_INFO)
-        userInfo?.let {
+        Log.d("박태규", "userInfo : ${PrefManager.getUserInfo()}")
+        val userInfo = PrefManager.getUserInfo()
+        userInfo.let {
             viewModel.apply {
                 birthDate.value = it.birth.value
                 enterDate.value = it.enter.value
@@ -108,7 +108,8 @@ class InitInfoFragment: BaseFragment<FragmentInitInfoBinding, InitInfoViewModel>
                     retire = Info(viewDataBinding.retireDateText.text.toString(), viewModel.isPrivateRetireDate.value!!),
                 )
 
-                PrefManager.setUserInfo(KEY_USER_INFO, userInfo)
+                PrefManager.setUserInfo(userInfo)
+                (activity as MainActivity).showHomeFragment()
             }
         }
     }

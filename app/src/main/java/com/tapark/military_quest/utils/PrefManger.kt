@@ -1,4 +1,4 @@
-package com.tapark.military_quest.Utils
+package com.tapark.military_quest.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -35,13 +35,13 @@ object PrefManager {
         prefs.edit().putString(key, json).apply()
     }
 
-    fun getUserInfo(key: String): UserInfo? {
-        val json = prefs.getString(key, null)
+    fun getUserInfo(): UserInfo {
+        val json = prefs.getString(KEY_USER_INFO, null)
         return Gson().fromJson(json, object: TypeToken<UserInfo>() {}.type)
     }
-    fun setUserInfo(key: String, userInfo: UserInfo) {
+    fun setUserInfo(userInfo: UserInfo) {
         val json = Gson().toJson(userInfo)
-        prefs.edit().putString(key, json).apply()
+        prefs.edit().putString(KEY_USER_INFO, json).apply()
     }
 
 }

@@ -90,6 +90,10 @@ dependencies {
     //flexBox
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
 
+    // wave progressBar
+    //https://github.com/ZihYangLin/YPWaveView
+    implementation 'com.yangpingapps:ypwaveview:1.0.4'
+
     //출처: https://leveloper.tistory.com/204 [꾸준하게:티스토리]
 //    implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
 }

@@ -55,7 +55,7 @@ fun milliToYmd(milli: Long): String {
 
 fun ymdToMilli(ymd: String): Long {
     val locale = Locale.getDefault()
-    val dateFormat = SimpleDateFormat("yyyy.MM.dd", locale)
+    val dateFormat = SimpleDateFormat("yyyy.MM.dd.HH.mm.ss", locale)
 
-    return dateFormat.parse(ymd)?.time ?: System.currentTimeMillis()
+    return dateFormat.parse("$ymd.00.00.00")?.time ?: System.currentTimeMillis()
 }

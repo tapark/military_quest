@@ -9,6 +9,7 @@ import com.google.android.gms.ads.*
 import com.tapark.military_quest.account.InitInfoFragment
 import com.tapark.military_quest.base.BaseActivity
 import com.tapark.military_quest.databinding.ActivityMainBinding
+import com.tapark.military_quest.home.HomeFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -126,6 +127,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel>() 
             .add(R.id.fragmentContainerView, InitInfoFragment()).commitAllowingStateLoss()
     }
 
+    fun showHomeFragment() {
+        supportFragmentManager.beginTransaction()
+            .add(R.id.fragmentContainerView, HomeFragment()).commitAllowingStateLoss()
+    }
 
 
     companion object {
