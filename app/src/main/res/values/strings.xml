@@ -4,4 +4,9 @@
     <string name="common_private">비공개</string>
     <string name="common_public">공개</string>
 
+    <string name="all_photo">전체사진</string>
+    <string name="select_folder">폴더선택</string>
+    <string name="image_count">(%d)</string>
+
+
 </resources>

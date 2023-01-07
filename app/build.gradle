@@ -94,6 +94,13 @@ dependencies {
     //https://github.com/ZihYangLin/YPWaveView
     implementation 'com.yangpingapps:ypwaveview:1.0.4'
 
+    // https://github.com/CanHub/Android-Image-Cropper
+    implementation("com.vanniktech:android-image-cropper:4.5.0")
+
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+
     //출처: https://leveloper.tistory.com/204 [꾸준하게:티스토리]
 //    implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
 }

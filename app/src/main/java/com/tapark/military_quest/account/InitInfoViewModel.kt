@@ -1,5 +1,7 @@
 package com.tapark.military_quest.account
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import androidx.lifecycle.MutableLiveData
 import com.tapark.military_quest.base.BaseViewModel
 

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
 import androidx.fragment.app.viewModels
+import com.tapark.military_quest.MainActivity
 import com.tapark.military_quest.R
 import com.tapark.military_quest.base.BaseFragment
 import com.tapark.military_quest.databinding.FragmentHomeBinding
@@ -18,11 +19,13 @@ class HomeFragment: BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
 
     override fun onBackPressed() {
-
+        activity?.finish()
     }
 
     override fun addObserver() {
-
+        viewDataBinding.waveText.setOnClickListener {
+            (activity as MainActivity).showInitInfoFragment()
+        }
     }
 
     override fun initViews(savedInstanceState: Bundle?) {

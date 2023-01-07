@@ -1,15 +1,20 @@
 package com.tapark.military_quest
 
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
 import androidx.activity.viewModels
+import androidx.fragment.app.Fragment
 import com.google.android.gms.ads.*
+import com.tapark.military_quest.account.ImageCropFragment
+import com.tapark.military_quest.account.ImageSelectFragment
 import com.tapark.military_quest.account.InitInfoFragment
 import com.tapark.military_quest.base.BaseActivity
 import com.tapark.military_quest.databinding.ActivityMainBinding
 import com.tapark.military_quest.home.HomeFragment
+import com.tapark.military_quest.utils.PrefManager
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -76,7 +81,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel>() 
         Log.d("박태규", "Google Mobile Ads SDK Version: " + MobileAds.getVersion())
         initAdMob()
 
-        showInitInfoFragment()
+        if (PrefManager.getUserInfo().firstInit)
+            showInitInfoFragment()
+        else
+            showHomeFragment()
     }
 
     private fun initAdMob() {
@@ -124,14 +132,28 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel>() 
 
     fun showInitInfoFragment() {
         supportFragmentManager.beginTransaction()
-            .add(R.id.fragmentContainerView, InitInfoFragment()).commitAllowingStateLoss()
+            .add(R.id.fragmentContainerView, InitInfoFragment()).addToBackStack(null).commitAllowingStateLoss()
     }
 
     fun showHomeFragment() {
         supportFragmentManager.beginTransaction()
-            .add(R.id.fragmentContainerView, HomeFragment()).commitAllowingStateLoss()
+            .add(R.id.fragmentContainerView, HomeFragment()).addToBackStack(null).commitAllowingStateLoss()
     }
 
+    fun showImageSelectFragment() {
+        supportFragmentManager.beginTransaction()
+            .add(R.id.fragmentContainerView, ImageSelectFragment()).addToBackStack(null).commitAllowingStateLoss()
+    }
+
+    fun showImageCropFragment() {
+        supportFragmentManager.beginTransaction()
+            .add(R.id.fragmentContainerView, ImageCropFragment()).addToBackStack(null).commitAllowingStateLoss()
+    }
+
+
+    fun removeFragment() {
+        supportFragmentManager.popBackStack()
+    }
 
     companion object {
         // This is an ad unit ID for a test ad. Replace with your own banner ad unit ID.
