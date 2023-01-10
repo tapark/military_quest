@@ -11,5 +11,7 @@
     <string name="enter_date_form">입대일 : %s</string>
     <string name="retire_date_form">전역일 : %s</string>
 
+    <string name="sub_name_form">대한민국 %s %s</string>
+
 
 </resources>

@@ -10,6 +10,7 @@ import com.tapark.military_quest.base.BaseFragment
 import com.tapark.military_quest.data.UserInfo
 import com.tapark.military_quest.databinding.FragmentHomeBinding
 import com.tapark.military_quest.utils.PrefManager
+import com.tapark.military_quest.utils.PrefManager.KEY_PROFILE_BITMAP
 import com.tapark.military_quest.ymdToMilli
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,7 +33,7 @@ class HomeFragment: BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     override fun initViews(savedInstanceState: Bundle?) {
 
-
+        initData()
         onClick()
 
         val userInfo = PrefManager.getUserInfo()
@@ -80,6 +81,14 @@ class HomeFragment: BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     private fun initData() {
 
         userInfo = PrefManager.getUserInfo()
+
+        viewDataBinding.apply {
+            subNameText.text = getString(R.string.sub_name_form, userInfo.company.value, userInfo.rank.value)
+            nameText.text = userInfo.name.value.ifEmpty { "강한용사" }
+            enterText.text = getString(R.string.enter_date_form, userInfo.enter.value)
+            retireText.text = getString(R.string.retire_date_form, userInfo.retire.value)
+            profileImageView.setImageBitmap(PrefManager.getBitmap(KEY_PROFILE_BITMAP))
+        }
 
     }
 

@@ -137,7 +137,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel>() 
 
     fun showHomeFragment() {
         supportFragmentManager.beginTransaction()
-            .add(R.id.fragmentContainerView, HomeFragment()).addToBackStack(null).commitAllowingStateLoss()
+            .replace(R.id.fragmentContainerView, HomeFragment()).addToBackStack(null).commitAllowingStateLoss()
     }
 
     fun showImageSelectFragment() {
