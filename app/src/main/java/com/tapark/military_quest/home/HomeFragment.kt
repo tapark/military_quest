@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import com.tapark.military_quest.MainActivity
 import com.tapark.military_quest.R
 import com.tapark.military_quest.base.BaseFragment
+import com.tapark.military_quest.data.UserInfo
 import com.tapark.military_quest.databinding.FragmentHomeBinding
 import com.tapark.military_quest.utils.PrefManager
 import com.tapark.military_quest.ymdToMilli
@@ -17,6 +18,7 @@ class HomeFragment: BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     override val viewModel by viewModels<HomeViewModel>()
     override val layout: Int = R.layout.fragment_home
 
+    lateinit var userInfo: UserInfo
 
     override fun onBackPressed() {
         activity?.finish()
@@ -29,6 +31,10 @@ class HomeFragment: BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     override fun initViews(savedInstanceState: Bundle?) {
+
+
+        onClick()
+
         val userInfo = PrefManager.getUserInfo()
 
         val enterSec = (ymdToMilli(userInfo.enter.value) / 1000).toInt()
@@ -64,4 +70,17 @@ class HomeFragment: BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
         }.start()
     }
+
+    private fun onClick() {
+        viewDataBinding.modifyInfoButton.setOnClickListener {
+            (activity as MainActivity).showInitInfoFragment()
+        }
+    }
+
+    private fun initData() {
+
+        userInfo = PrefManager.getUserInfo()
+
+    }
+
 }

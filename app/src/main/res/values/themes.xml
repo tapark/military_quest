@@ -10,15 +10,15 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">#222222</item>
-        <item name="android:navigationBarColor">#222222</item>
-        <item name="android:windowBackground">#222222</item>
+        <item name="android:statusBarColor">@color/app_background</item>
+        <item name="android:navigationBarColor">@color/app_background</item>
+        <item name="android:windowBackground">@color/app_background</item>
         <!-- Customize your theme here. -->
 
         <!-- 상단 Title 배경색 -->
-        <item name="colorAccent">#222222</item>
+        <item name="colorAccent">@color/app_background</item>
         <!-- 선택한 날짜 배경 색 -->
-        <item name="colorControlActivated">#222222</item>
+        <item name="colorControlActivated">@color/app_background</item>
 
     </style>
 </resources>

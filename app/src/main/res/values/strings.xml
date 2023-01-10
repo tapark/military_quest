@@ -8,5 +8,8 @@
     <string name="select_folder">폴더선택</string>
     <string name="image_count">(%d)</string>
 
+    <string name="enter_date_form">입대일 : %s</string>
+    <string name="retire_date_form">전역일 : %s</string>
+
 
 </resources>

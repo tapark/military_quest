@@ -10,14 +10,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardCornerRadius="8dp"
-        app:cardBackgroundColor="#222222"
+        app:cardBackgroundColor="@color/app_background"
         app:cardElevation="0dp">
 
         <LinearLayout
             android:id="@+id/militaryLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#222222"
+            android:background="@color/app_background"
             android:padding="16dp"
             android:orientation="vertical">
 
@@ -82,7 +82,7 @@
             android:id="@+id/etcLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#222222"
+            android:background="@color/app_background"
             android:padding="16dp"
             android:orientation="vertical"
             android:visibility="gone">

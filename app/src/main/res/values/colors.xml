@@ -6,6 +6,8 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
 
+    <color name="app_background">#101820</color>
+    <color name="app_main">#F2AA4C</color>
 
     <color name="black_20">#33000000</color>
     <color name="black_40">#66000000</color>
