@@ -26,9 +26,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:text="병사"
-                android:textColor="@color/white"
+                android:textColor="@color/app_main"
                 android:textSize="16dp"
-                android:textStyle="bold|italic"/>
+                android:textStyle="bold"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/soldierRecyclerView"
@@ -44,9 +44,9 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="2dp"
                 android:text="부사관"
-                android:textColor="@color/white"
+                android:textColor="@color/app_main"
                 android:textSize="16dp"
-                android:textStyle="bold|italic"/>
+                android:textStyle="bold"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/subOfficerRecyclerView"
@@ -63,9 +63,9 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="2dp"
                 android:text="장교"
-                android:textColor="@color/white"
+                android:textColor="@color/app_main"
                 android:textSize="16dp"
-                android:textStyle="bold|italic"/>
+                android:textStyle="bold"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/officerRecyclerView"
@@ -93,9 +93,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:text="기타"
-                android:textColor="@color/white"
+                android:textColor="@color/app_main"
                 android:textSize="16dp"
-                android:textStyle="bold|italic"/>
+                android:textStyle="bold"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/etcRecyclerView"
