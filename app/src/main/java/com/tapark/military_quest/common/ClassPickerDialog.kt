@@ -21,7 +21,7 @@ class ClassPickerDialog(val company: String = "육군", val onClicked : (String)
 
     private val classList1 = mutableListOf<String>("이경", "일경", "상경", "수경") // 의경, 해양의무경찰
     private val classList2 = mutableListOf<String>("이방", "일방", "상방", "수방") // 의무소방
-    private val classList3 = mutableListOf<String>("1년차", "2년차", "3년차") // 기타
+    private val classList3 = mutableListOf<String>("1호봉", "2호봉", "3호봉", "4호봉") // 기타
 
     private val soldierList = mutableListOf<String>("이병", "일병", "상병", "병장") // 육군, 해군, 공군, 해병, 카투사, 특전사
     private val officerList = mutableListOf<String>("소위", "중위", "대위", "소령") // 장교
@@ -47,6 +47,11 @@ class ClassPickerDialog(val company: String = "육군", val onClicked : (String)
                 viewDataBinding.militaryLayout.visibility = View.VISIBLE
                 viewDataBinding.etcLayout.visibility = View.GONE
                 initAdapter()
+            }
+            "상근예비역" -> {
+                viewDataBinding.militaryLayout.visibility = View.GONE
+                viewDataBinding.etcLayout.visibility = View.VISIBLE
+                initEtcAdapter(soldierList)
             }
             "의무경찰", "해양의무경찰" -> {
                 viewDataBinding.militaryLayout.visibility = View.GONE

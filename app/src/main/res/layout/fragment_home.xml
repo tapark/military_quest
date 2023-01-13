@@ -18,31 +18,16 @@
         android:clickable="true"
         android:focusable="true">
 
-        <com.yangp.ypwaveview.YPWaveView
-            android:id="@+id/backgroundWaveLayout"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:shapeType="square"
-            app:layout_constraintDimensionRatio="1:1"
-            app:animatorEnable="true"
-            app:textHidden="true"
-            app:borderWidthSize="0dp"
-            app:frontColor="#03FFFFFF"
-            app:behideColor="#03FFFFFF"
-            app:max="1000"
-            app:progress="600"
-            app:strong="50"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
         <TextView
-            android:id="@+id/waveText"
+            android:id="@+id/guideText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="24dp"
+            android:padding="12dp"
             android:textColor="#33FFFFFF"
-            android:text="33.123151"
+            android:text="* 상기 계산 결과는 행정적 효력이 없습니다."
+            android:textSize="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/userInfoLayout"
@@ -147,7 +132,7 @@
             app:layout_constraintTop_toBottomOf="@id/userInfoLayout">
 
             <TextView
-                android:id="@+id/startDateText"
+                android:id="@+id/progressTitleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -192,7 +177,7 @@
                 android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/mainProgressView"
-                tools:text="2022.10.22"/>
+                tools:text="35.212425"/>
 
             <TextView
                 android:id="@+id/endDateText"
@@ -212,6 +197,7 @@
             android:layout_width="0dp"
             android:layout_height="300dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/mainQuestLayout"/>

@@ -10,6 +10,7 @@ import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.tapark.military_quest.R
+import com.tapark.military_quest.data.SubQuestInfo
 import com.tapark.military_quest.data.UserInfo
 import java.io.ByteArrayOutputStream
 
@@ -22,6 +23,7 @@ object PrefManager {
 
     const val KEY_USER_INFO = "KEY_USER_INFO"
     const val KEY_PROFILE_BITMAP = "KEY_PROFILE_BITMAP"
+    const val KEY_SUB_QUEST_LIST = "KEY_SUB_QUEST_LIST"
 
     fun init(mContext: Context) {
         context = mContext
@@ -49,6 +51,15 @@ object PrefManager {
     fun setUserInfo(userInfo: UserInfo) {
         val json = Gson().toJson(userInfo)
         prefs.edit().putString(KEY_USER_INFO, json).apply()
+    }
+
+    fun getSubQuestList(): MutableList<SubQuestInfo> {
+        val json = prefs.getString(KEY_SUB_QUEST_LIST, null)
+        return Gson().fromJson(json, object: TypeToken<MutableList<SubQuestInfo>>() {}.type) ?: mutableListOf<SubQuestInfo>()
+    }
+    fun setSubQuestList(subQuestList: MutableList<SubQuestInfo>) {
+        val json = Gson().toJson(subQuestList)
+        prefs.edit().putString(KEY_SUB_QUEST_LIST, json).apply()
     }
 
     fun getBitmap(key: String): Bitmap? {
