@@ -7,9 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.tapark.military_quest.R
 import com.tapark.military_quest.data.SubQuestInfo
-import com.tapark.military_quest.databinding.ItemFolderSelectBinding
 import com.tapark.military_quest.databinding.ItemSubQuestBinding
-import com.tapark.military_quest.ymdToMilli
+import com.tapark.military_quest.utils.ymdToMilli
 
 class SubQuestAdapter: RecyclerView.Adapter<SubQuestAdapter.SubQuestViewHolder>() {
 

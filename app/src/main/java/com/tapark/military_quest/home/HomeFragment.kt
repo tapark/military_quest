@@ -2,10 +2,8 @@ package com.tapark.military_quest.home
 
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
-import android.widget.TextView
+import androidx.compose.ui.graphics.Color
 import androidx.fragment.app.viewModels
-import com.skydoves.progressview.ProgressView
 import com.tapark.military_quest.MainActivity
 import com.tapark.military_quest.R
 import com.tapark.military_quest.base.BaseFragment
@@ -15,10 +13,9 @@ import com.tapark.military_quest.home.adapter.SubQuestAdapter
 import com.tapark.military_quest.home.adapter.SubQuestsItemDecoration
 import com.tapark.military_quest.utils.PrefManager
 import com.tapark.military_quest.utils.PrefManager.KEY_PROFILE_BITMAP
-import com.tapark.military_quest.ymdToMilli
+import com.tapark.military_quest.utils.getAddedDate
+import com.tapark.military_quest.utils.ymdToMilli
 import dagger.hilt.android.AndroidEntryPoint
-import java.text.SimpleDateFormat
-import java.util.*
 
 @AndroidEntryPoint
 class HomeFragment: BaseFragment<FragmentHomeBinding, HomeViewModel>() {
@@ -138,11 +135,8 @@ class HomeFragment: BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         dataList.forEach {data ->
 
             val enter = userInfo.enter.value
-            val calendar = Calendar.getInstance()
-            calendar.time = Date(ymdToMilli(enter))
-            val dateFormat = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
-            calendar.add(Calendar.MONTH, data.month)
-            val info = SubQuestInfo(data.nextRank + " 진급", enter, dateFormat.format(calendar.time))
+            val end = getAddedDate(enter, month = data.month)
+            val info = SubQuestInfo(data.nextRank + " 진급", enter, end)
             subQuestList.add(info)
         }
         PrefManager.setSubQuestList(subQuestList)

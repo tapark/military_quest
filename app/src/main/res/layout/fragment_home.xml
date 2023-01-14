@@ -200,7 +200,8 @@
             app:spanCount="2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/mainQuestLayout"/>
+            app:layout_constraintTop_toBottomOf="@id/mainQuestLayout"
+            tools:listitem="@layout/item_sub_quest" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

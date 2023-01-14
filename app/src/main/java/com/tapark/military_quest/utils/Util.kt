@@ -1,10 +1,11 @@
-package com.tapark.military_quest
+package com.tapark.military_quest.utils
 
 import android.content.Context
 import android.os.Build
 import android.util.DisplayMetrics
 import android.view.WindowInsets
 import android.view.WindowManager
+import com.tapark.military_quest.data.SubQuestInfo
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -58,4 +59,15 @@ fun ymdToMilli(ymd: String): Long {
     val dateFormat = SimpleDateFormat("yyyy.MM.dd.HH.mm.ss", locale)
 
     return dateFormat.parse("$ymd.00.00.00")?.time ?: System.currentTimeMillis()
+}
+
+fun getAddedDate(originDate: String = milliToYmd(System.currentTimeMillis()), year: Int = 0, month: Int = 0, day: Int = 0): String {
+
+    val calendar = Calendar.getInstance()
+    calendar.time = Date(ymdToMilli(originDate))
+    calendar.add(Calendar.YEAR, year)
+    calendar.add(Calendar.MONTH, month)
+    calendar.add(Calendar.DATE, day)
+    val dateFormat = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
+    return dateFormat.format(calendar.time)
 }

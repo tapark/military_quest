@@ -4,12 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
@@ -20,16 +17,15 @@ import androidx.fragment.app.viewModels
 import com.tapark.military_quest.MainActivity
 import com.tapark.military_quest.R
 import com.tapark.military_quest.utils.PrefManager
-import com.tapark.military_quest.utils.PrefManager.KEY_USER_INFO
 import com.tapark.military_quest.base.BaseFragment
 import com.tapark.military_quest.common.ClassPickerDialog
 import com.tapark.military_quest.common.CompanyPickerDialog
 import com.tapark.military_quest.common.DatePickerDialog
-import com.tapark.military_quest.data.Info
-import com.tapark.military_quest.data.UserInfo
+import com.tapark.military_quest.data.*
 import com.tapark.military_quest.databinding.FragmentInitInfoBinding
-import com.tapark.military_quest.milliToYmd
+import com.tapark.military_quest.utils.milliToYmd
 import com.tapark.military_quest.utils.PrefManager.KEY_PROFILE_BITMAP
+import com.tapark.military_quest.utils.getAddedDate
 
 class InitInfoFragment: BaseFragment<FragmentInitInfoBinding, InitInfoViewModel>() {
     override val viewModel by viewModels<InitInfoViewModel>()
@@ -58,6 +54,7 @@ class InitInfoFragment: BaseFragment<FragmentInitInfoBinding, InitInfoViewModel>
 
     lateinit var userInfo: UserInfo
     var profileImage :Bitmap? = null
+    var serviceMonth = 18
 
     override fun onBackPressed() {
         if (userInfo.firstInit) {
@@ -148,25 +145,39 @@ class InitInfoFragment: BaseFragment<FragmentInitInfoBinding, InitInfoViewModel>
                     birthDate.value = it
                 }.show(parentFragmentManager, null)
             }
-            viewDataBinding.enterDateText.setOnClickListener {
-                DatePickerDialog(enterDate.value!!) {
-                    enterDate.value = it
-                }.show(parentFragmentManager, null)
-            }
-            viewDataBinding.retireDateText.setOnClickListener {
-                DatePickerDialog(retireDate.value!!) {
-                    retireDate.value = it
-                }.show(parentFragmentManager, null)
-            }
-
             viewDataBinding.companyText.setOnClickListener {
                 CompanyPickerDialog {
                     viewDataBinding.companyText.text = it
+                    when (it) {
+                        "육군", "해병", "의무경찰, 상근예비역"         -> { serviceMonth = MONTH_18 } // 18
+                        "해군", "해양의무경찰", "의무소방"            -> { serviceMonth = MONTH_20 } // 20
+                        "공군", "사회복무요원"                       -> { serviceMonth = MONTH_21 } // 21
+                        "산업기능요원(보충역)"                       -> { serviceMonth = MONTH_23 } // 23
+                        "산업기능요원(현역), 예술체육요원"             -> { serviceMonth = MONTH_34 } // 34
+                        "전문연구요원", "대체복무요원", "승선근무예비역" -> { serviceMonth = MONTH_36 } // 36
+                    }
+                    retireDate.value = getAddedDate(enterDate.value!!, month = serviceMonth)
                 }.show(parentFragmentManager, null)
             }
             viewDataBinding.classText.setOnClickListener {
                 ClassPickerDialog(viewDataBinding.companyText.text.toString()) {
                     viewDataBinding.classText.text = it
+                    when (it) {
+                        "소위", "중위", "대위" -> { serviceMonth = MONTH_36 }
+                        "하사", "중사", "상사" -> { serviceMonth = MONTH_48 }
+                    }
+                    retireDate.value = getAddedDate(enterDate.value!!, month = serviceMonth)
+                }.show(parentFragmentManager, null)
+            }
+            viewDataBinding.enterDateText.setOnClickListener {
+                DatePickerDialog(enterDate.value!!) {
+                    enterDate.value = it
+                    retireDate.value = getAddedDate(enterDate.value!!, month = serviceMonth)
+                }.show(parentFragmentManager, null)
+            }
+            viewDataBinding.retireDateText.setOnClickListener {
+                DatePickerDialog(retireDate.value!!) {
+                    retireDate.value = it
                 }.show(parentFragmentManager, null)
             }
 

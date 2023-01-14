@@ -3,7 +3,7 @@ package com.tapark.military_quest.home.adapter
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.tapark.military_quest.dpToPx
+import com.tapark.military_quest.utils.dpToPx
 
 class SubQuestsItemDecoration: RecyclerView.ItemDecoration() {
 

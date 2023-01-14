@@ -24,8 +24,8 @@ class ClassPickerDialog(val company: String = "육군", val onClicked : (String)
     private val classList3 = mutableListOf<String>("1호봉", "2호봉", "3호봉", "4호봉") // 기타
 
     private val soldierList = mutableListOf<String>("이병", "일병", "상병", "병장") // 육군, 해군, 공군, 해병, 카투사, 특전사
-    private val officerList = mutableListOf<String>("소위", "중위", "대위", "소령") // 장교
-    private val subOfficerList = mutableListOf<String>("하사", "중사", "상사", "원사") // 부사관
+    private val officerList = mutableListOf<String>("소위", "중위", "대위") // 장교
+    private val subOfficerList = mutableListOf<String>("하사", "중사", "상사") // 부사관
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         viewDataBinding = DataBindingUtil.inflate(inflater, R.layout.dialog_class_picker, container, false)

@@ -1,7 +1,12 @@
 package com.tapark.military_quest.data
 
-import java.time.Month
-
+const val MONTH_18 = 18 // "육군", "해병", "의무경찰, 상근예비역"
+const val MONTH_20 = 20 // "해군", "해양의무경찰", "의무소방"
+const val MONTH_21 = 21 // "공군", "사회복무요원"
+const val MONTH_23 = 23 // "산업기능요원(보충역)"
+const val MONTH_34 = 34 // "산업기능요원(현역), 예술체육요원"
+const val MONTH_36 = 36 // "전문연구요원", "대체복무요원", "승선근무예비역", "장교"
+const val MONTH_48 = 48 // "부사관"
 
 data class SubQuestData(
     val currentRank: String,

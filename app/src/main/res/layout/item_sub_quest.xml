@@ -12,85 +12,85 @@
         android:layout_height="wrap_content"
         android:background="@color/white_5">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/progressLayout"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/progressTitleText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="16dp"
-            android:layout_marginHorizontal="24dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"
+            android:textColor="@color/white"
+            android:textSize="12dp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-            <TextView
-                android:id="@+id/progressTitleText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:textColor="@color/white"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/subProgressView"
-                tools:text="전역"/>
-
-            <TextView
-                android:id="@+id/dDayText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:textColor="@color/white"
-                android:textSize="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/subProgressView"
-                tools:text="D-999"/>
-
-            <com.skydoves.progressview.ProgressView
-                android:id="@+id/subProgressView"
-                android:layout_width="match_parent"
-                android:layout_height="18dp"
-                app:progressView_min="0"
-                app:progressView_max="100"
-                app:progressView_colorBackground="@color/white_5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-
-            <TextView
-                android:id="@+id/progressText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="12dp"
-                android:textColor="@color/white"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/subProgressView"
-                tools:text="3.141592"/>
-
-            <TextView
-                android:id="@+id/endDateText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="12dp"
-                android:textColor="@color/app_main"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/subProgressView"
-                tools:text="2022.10.22"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintStart_toStartOf="@id/subProgressView"
+            app:layout_constraintBottom_toTopOf="@id/subProgressView"
+            tools:text="전역"/>
 
         <ImageView
+            android:id="@+id/editButton"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:padding="4dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="4dp"
+            android:layout_marginStart="2dp"
             android:src="@drawable/ic_round_edit_24"
             app:tint="@color/white_60"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/subProgressView"
+            app:layout_constraintStart_toEndOf="@id/progressTitleText"/>
+
+        <TextView
+            android:id="@+id/dDayText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"
+            android:textColor="@color/white"
+            android:textSize="12dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/subProgressView"
+            app:layout_constraintBottom_toTopOf="@id/subProgressView"
+            tools:text="D-999"/>
+
+        <com.skydoves.progressview.ProgressView
+            android:id="@+id/subProgressView"
+            android:layout_width="match_parent"
+            android:layout_height="18dp"
+            app:progressView_min="0"
+            app:progressView_max="100"
+            android:layout_marginHorizontal="24dp"
+            app:progressView_colorBackground="@color/white_5"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/progressLayout" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/progressText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="4dp"
+            android:textSize="12dp"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="@id/subProgressView"
+            app:layout_constraintTop_toBottomOf="@id/subProgressView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="3.141592"/>
+
+        <TextView
+            android:id="@+id/endDateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="4dp"
+            android:textSize="12dp"
+            android:textColor="@color/app_main"
+            app:layout_constraintBottom_toBottomOf="parent
+"
+            app:layout_constraintEnd_toEndOf="@id/subProgressView"
+            app:layout_constraintTop_toBottomOf="@id/subProgressView"
+            tools:text="2022.10.22"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
