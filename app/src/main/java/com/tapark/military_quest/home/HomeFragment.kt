@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.compose.ui.graphics.Color
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.tapark.military_quest.MainActivity
 import com.tapark.military_quest.R
 import com.tapark.military_quest.base.BaseFragment
@@ -11,6 +12,8 @@ import com.tapark.military_quest.data.*
 import com.tapark.military_quest.databinding.FragmentHomeBinding
 import com.tapark.military_quest.home.adapter.SubQuestAdapter
 import com.tapark.military_quest.home.adapter.SubQuestsItemDecoration
+import com.tapark.military_quest.home.dialog.QuestEditDialog
+import com.tapark.military_quest.utils.ItemMoveSimpleCallback
 import com.tapark.military_quest.utils.PrefManager
 import com.tapark.military_quest.utils.PrefManager.KEY_PROFILE_BITMAP
 import com.tapark.military_quest.utils.getAddedDate
@@ -26,6 +29,7 @@ class HomeFragment: BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     lateinit var userInfo: UserInfo
     lateinit var subQuestAdapter: SubQuestAdapter
+    lateinit var adapterTouchHelper  : ItemTouchHelper
 
     lateinit var subQuestList: MutableList<SubQuestInfo>
 
@@ -53,6 +57,11 @@ class HomeFragment: BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     private fun onClick() {
         viewDataBinding.modifyInfoButton.setOnClickListener {
             (activity as MainActivity).showInitInfoFragment()
+        }
+        viewDataBinding.addQuestButton.setOnClickListener {// 추가 케이스
+            QuestEditDialog(-1, {}) {
+                subQuestAdapter.addItemLast()
+            }.show(parentFragmentManager, null)
         }
     }
 
@@ -132,7 +141,7 @@ class HomeFragment: BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             }
         }
 
-        dataList.forEach {data ->
+        dataList.forEach { data ->
 
             val enter = userInfo.enter.value
             val end = getAddedDate(enter, month = data.month)
@@ -144,10 +153,19 @@ class HomeFragment: BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     private fun initAdapter() {
 
-        subQuestAdapter = SubQuestAdapter()
+        subQuestAdapter = SubQuestAdapter { position ->// click edit button
+            QuestEditDialog(
+                position = position,
+                onDelete = { subQuestAdapter.deleteItem(position) },
+                onUpdate = { subQuestAdapter.updateList(position) }
+            ).show(parentFragmentManager, null)
+        }
         viewDataBinding.subQuestRecyclerView.adapter = subQuestAdapter
         viewDataBinding.subQuestRecyclerView.addItemDecoration(SubQuestsItemDecoration())
         subQuestAdapter.initList(subQuestList)
+        val callback = ItemMoveSimpleCallback(subQuestAdapter)
+        adapterTouchHelper = ItemTouchHelper(callback)
+        adapterTouchHelper.attachToRecyclerView(viewDataBinding.subQuestRecyclerView)
     }
 
 }

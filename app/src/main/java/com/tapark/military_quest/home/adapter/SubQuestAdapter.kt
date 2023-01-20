@@ -1,16 +1,22 @@
 package com.tapark.military_quest.home.adapter
 
 import android.content.Context
+import android.graphics.Color
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.tapark.military_quest.R
 import com.tapark.military_quest.data.SubQuestInfo
 import com.tapark.military_quest.databinding.ItemSubQuestBinding
+import com.tapark.military_quest.utils.ItemMoveSimpleCallback
+import com.tapark.military_quest.utils.PrefManager
 import com.tapark.military_quest.utils.ymdToMilli
+import java.util.*
 
-class SubQuestAdapter: RecyclerView.Adapter<SubQuestAdapter.SubQuestViewHolder>() {
+class SubQuestAdapter(val onEdit: (Int) -> Unit): RecyclerView.Adapter<SubQuestAdapter.SubQuestViewHolder>(),
+ItemMoveSimpleCallback.ItemTouchHelperContract {
 
     private val subQuestList = mutableListOf<SubQuestInfo>()
     private val timerList = mutableListOf<CountDownTimer>()
@@ -31,6 +37,7 @@ class SubQuestAdapter: RecyclerView.Adapter<SubQuestAdapter.SubQuestViewHolder>(
             binding.dDayText.text = context.getString(R.string.d_day_form, operator, dDay.toInt())
             binding.endDateText.text = item.endDate
             binding.subProgressView.progress = currentPercent
+            binding.subProgressView.highlightView.color = Color.parseColor("#FFFFFFFF")
 
             val timer = object : CountDownTimer(endMilli - currentMilli, 100) {
                 override fun onTick(p0: Long) {
@@ -41,8 +48,12 @@ class SubQuestAdapter: RecyclerView.Adapter<SubQuestAdapter.SubQuestViewHolder>(
                     binding.progressText.text = "100"
                 }
             }
-            timerList.add(timer)
+            timerList.add(position, timer)
             timer.start()
+
+            binding.editButton.setOnClickListener {
+                onEdit(absoluteAdapterPosition)
+            }
         }
     }
 
@@ -64,11 +75,57 @@ class SubQuestAdapter: RecyclerView.Adapter<SubQuestAdapter.SubQuestViewHolder>(
         notifyDataSetChanged()
     }
 
+    fun updateList(position: Int) {
+        subQuestList.clear()
+        timerList[position].cancel()
+        timerList.removeAt(position)
+        subQuestList.addAll(PrefManager.getSubQuestList())
+        notifyItemChanged(position)
+    }
+
+    fun addItemLast() {
+        subQuestList.clear()
+        subQuestList.addAll(PrefManager.getSubQuestList())
+        notifyItemInserted(subQuestList.size - 1)
+    }
+
+    fun deleteItem(position: Int) {
+        Log.d("박태규", "deleteItem : $position")
+        subQuestList.clear()
+        timerList[position].cancel()
+        timerList.removeAt(position)
+        subQuestList.addAll(PrefManager.getSubQuestList())
+        notifyItemRemoved(position)
+    }
+
     fun onDestroy() {
         timerList.forEach {
             it.cancel()
         }
         subQuestList.clear()
+    }
+
+    override fun onRowMoved(fromPosition: Int, toPosition: Int) {
+        if (fromPosition < toPosition) {
+            for (i in fromPosition until toPosition) {
+                Collections.swap(subQuestList, i, i + 1)
+                Collections.swap(timerList, i, i + 1)
+            }
+        } else {
+            for (i in fromPosition downTo toPosition + 1) {
+                Collections.swap(subQuestList, i, i - 1)
+                Collections.swap(timerList, i, i - 1)
+            }
+        }
+        PrefManager.setSubQuestList(subQuestList)
+        notifyItemMoved(fromPosition, toPosition)
+    }
+
+    override fun onRowSelected(holder: RecyclerView.ViewHolder) {
+
+    }
+    override fun onRowClear(holder: RecyclerView.ViewHolder) {
+
     }
 
 }

@@ -18,17 +18,6 @@
         android:clickable="true"
         android:focusable="true">
 
-        <TextView
-            android:id="@+id/guideText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:textColor="#33FFFFFF"
-            android:text="* 상기 계산 결과는 행정적 효력이 없습니다."
-            android:textSize="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/userInfoLayout"
             android:layout_width="match_parent"
@@ -192,16 +181,70 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/subQuestRecyclerView"
-            android:layout_width="0dp"
-            android:layout_height="300dp"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/mainQuestLayout"
-            tools:listitem="@layout/item_sub_quest" />
+            app:layout_constraintBottom_toTopOf="@id/guideText">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/addQuestButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="24dp"
+                android:paddingTop="24dp"
+                android:paddingBottom="8dp"
+                android:layout_gravity="end"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <ImageView
+                    android:id="@+id/deleteIcon"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/round_add_card_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/common_add"
+                    android:textColor="@color/white"
+                    android:textSize="14dp"
+                    app:layout_constraintStart_toEndOf="@id/deleteIcon"
+                    app:layout_constraintTop_toTopOf="@id/deleteIcon"
+                    app:layout_constraintBottom_toBottomOf="@id/deleteIcon"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/subQuestRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                tools:listitem="@layout/item_sub_quest" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/guideText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:textColor="#33FFFFFF"
+            android:text="* 상기 계산 결과는 행정적 효력이 없습니다."
+            android:textSize="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
