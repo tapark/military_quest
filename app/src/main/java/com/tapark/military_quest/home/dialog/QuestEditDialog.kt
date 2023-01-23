@@ -1,6 +1,7 @@
 package com.tapark.military_quest.home.dialog
 
 import android.content.res.Resources
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,12 +10,17 @@ import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexWrap
+import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.JustifyContent
 import com.tapark.military_quest.R
 import com.tapark.military_quest.common.ConfirmDialog
 import com.tapark.military_quest.common.DatePickerDialog
 import com.tapark.military_quest.data.SubQuestInfo
 import com.tapark.military_quest.databinding.DialogClassPickerBinding
 import com.tapark.military_quest.databinding.DialogQuestEditBinding
+import com.tapark.military_quest.home.adapter.ColorAdapter
 import com.tapark.military_quest.utils.PrefManager
 import com.tapark.military_quest.utils.getAddedDate
 import com.tapark.military_quest.utils.milliToYmd
@@ -42,6 +48,7 @@ class QuestEditDialog(private val position: Int, val onDelete: () -> Unit, val o
         initSize()
         initData()
         onClicked()
+        initAdapter()
     }
 
     private fun initData() {
@@ -57,7 +64,7 @@ class QuestEditDialog(private val position: Int, val onDelete: () -> Unit, val o
         subQuestList = PrefManager.getSubQuestList()
         val data = if (position < 0) {
             val currentDate = milliToYmd(System.currentTimeMillis())
-            SubQuestInfo("", currentDate, getAddedDate(currentDate, day = 100))
+            SubQuestInfo("", getAddedDate(currentDate, day = -30), getAddedDate(currentDate, day = 60), Color.parseColor("#F2AA4C"))
         } else {
             subQuestList[position]
         }
@@ -76,11 +83,29 @@ class QuestEditDialog(private val position: Int, val onDelete: () -> Unit, val o
             progressEndDateText.text = data.endDate
             questProgressView.progress = currentPercent
             progressPercentText.text = currentPercent.toString()
+            questProgressView.highlightView.color = data.color
+            progressEndDateText.setTextColor(data.color)
 
-            nameTitle.text = data.name
+            nameEditText.setText(data.name)
             startDateText.text = data.startDate
             endDateText.text = data.endDate
         }
+    }
+
+    private fun initAdapter() {
+        val colorAdapter = ColorAdapter {
+            viewDataBinding.questProgressView.highlightView.color = it
+            viewDataBinding.progressEndDateText.setTextColor(it)
+        }
+        FlexboxLayoutManager(requireContext()).apply {
+            flexWrap = FlexWrap.WRAP
+            flexDirection = FlexDirection.ROW
+            justifyContent = JustifyContent.FLEX_START
+        }.let {
+            viewDataBinding.colorRecyclerView.layoutManager = it
+        }
+
+        viewDataBinding.colorRecyclerView.adapter = colorAdapter
     }
 
     private fun onClicked() {
@@ -111,7 +136,8 @@ class QuestEditDialog(private val position: Int, val onDelete: () -> Unit, val o
                     SubQuestInfo(
                         name = viewDataBinding.nameEditText.text.toString(),
                         startDate = viewDataBinding.startDateText.text.toString(),
-                        endDate = viewDataBinding.endDateText.text.toString()
+                        endDate = viewDataBinding.endDateText.text.toString(),
+                        color = viewDataBinding.questProgressView.highlightView.color
                     )
                 )
             } else {
@@ -119,6 +145,7 @@ class QuestEditDialog(private val position: Int, val onDelete: () -> Unit, val o
                     name = viewDataBinding.nameEditText.text.toString()
                     startDate = viewDataBinding.startDateText.text.toString()
                     endDate = viewDataBinding.endDateText.text.toString()
+                    color = viewDataBinding.questProgressView.highlightView.color
                 }
             }
             PrefManager.setSubQuestList(subQuestList)

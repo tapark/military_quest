@@ -37,7 +37,8 @@ ItemMoveSimpleCallback.ItemTouchHelperContract {
             binding.dDayText.text = context.getString(R.string.d_day_form, operator, dDay.toInt())
             binding.endDateText.text = item.endDate
             binding.subProgressView.progress = currentPercent
-            binding.subProgressView.highlightView.color = Color.parseColor("#FFFFFFFF")
+            binding.subProgressView.highlightView.color = item.color
+            binding.endDateText.setTextColor(item.color)
 
             val timer = object : CountDownTimer(endMilli - currentMilli, 100) {
                 override fun onTick(p0: Long) {

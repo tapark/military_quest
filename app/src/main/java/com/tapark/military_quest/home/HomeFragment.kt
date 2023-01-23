@@ -1,8 +1,8 @@
 package com.tapark.military_quest.home
 
+import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
-import androidx.compose.ui.graphics.Color
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.tapark.military_quest.MainActivity
@@ -145,7 +145,7 @@ class HomeFragment: BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
             val enter = userInfo.enter.value
             val end = getAddedDate(enter, month = data.month)
-            val info = SubQuestInfo(data.nextRank + " 진급", enter, end)
+            val info = SubQuestInfo(data.nextRank + " 진급", enter, end, Color.parseColor("#F2AA4C"))
             subQuestList.add(info)
         }
         PrefManager.setSubQuestList(subQuestList)

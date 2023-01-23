@@ -4,6 +4,6 @@ data class SubQuestInfo(
 
     var name: String,
     var startDate: String,
-    var endDate: String
-
+    var endDate: String,
+    var color: Int
 )
