@@ -58,11 +58,11 @@ class HomeFragment: BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         viewDataBinding.modifyInfoButton.setOnClickListener {
             (activity as MainActivity).showInitInfoFragment()
         }
-        viewDataBinding.addQuestButton.setOnClickListener {// 추가 케이스
-            QuestEditDialog(-1, {}) {
-                subQuestAdapter.addItemLast()
-            }.show(parentFragmentManager, null)
-        }
+//        viewDataBinding.addQuestButton.setOnClickListener {// 추가 케이스
+//            QuestEditDialog(-1, {}) {
+//                subQuestAdapter.addItemLast()
+//            }.show(parentFragmentManager, null)
+//        }
     }
 
     private fun initData() {
@@ -153,13 +153,20 @@ class HomeFragment: BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     private fun initAdapter() {
 
-        subQuestAdapter = SubQuestAdapter { position ->// click edit button
-            QuestEditDialog(
-                position = position,
-                onDelete = { subQuestAdapter.deleteItem(position) },
-                onUpdate = { subQuestAdapter.updateList(position) }
-            ).show(parentFragmentManager, null)
-        }
+        subQuestAdapter = SubQuestAdapter(
+            onEdit = { position ->// click edit button
+                QuestEditDialog(
+                    position = position,
+                    onDelete = { subQuestAdapter.deleteItem(position) },
+                    onUpdate = { subQuestAdapter.updateList(position) }
+                ).show(parentFragmentManager, null)
+            },
+            onAdd = {
+                QuestEditDialog(-1, {}) {
+                    subQuestAdapter.addItemLast()
+                }.show(parentFragmentManager, null)
+            }
+        )
         viewDataBinding.subQuestRecyclerView.adapter = subQuestAdapter
         viewDataBinding.subQuestRecyclerView.addItemDecoration(SubQuestsItemDecoration())
         subQuestAdapter.initList(subQuestList)

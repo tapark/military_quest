@@ -3,6 +3,7 @@ package com.tapark.military_quest.home.dialog
 import android.content.res.Resources
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -130,7 +131,7 @@ class QuestEditDialog(private val position: Int, val onDelete: () -> Unit, val o
         }
 
         viewDataBinding.saveButton.setOnClickListener {
-
+            Log.d("박태규", "edit position : $position")
             if (position < 0) {
                 subQuestList.add(
                     SubQuestInfo(

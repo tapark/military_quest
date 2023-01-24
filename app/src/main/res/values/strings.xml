@@ -11,6 +11,8 @@
     <string name="common_modify_mode">수정하기</string>
 
     <string name="common_my_info">내정보</string>
+    <string name="common_other_info">동료정보</string>
+    <string name="common_community">커뮤니티</string>
 
     <string name="message_delete">삭제하실 건가요?</string>
 
@@ -23,5 +25,6 @@
 
     <string name="sub_name_form">대한민국 %s %s</string>
     <string name="d_day_form">D%s%d</string>
+
 
 </resources>

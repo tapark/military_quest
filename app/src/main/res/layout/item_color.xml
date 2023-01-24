@@ -10,7 +10,7 @@
         android:id="@+id/colorCardView"
         android:layout_width="18dp"
         android:layout_height="18dp"
-        app:cardCornerRadius="12dp"
+        app:cardCornerRadius="1dp"
         app:cardElevation="0dp"
         app:cardBackgroundColor="@color/white">
 

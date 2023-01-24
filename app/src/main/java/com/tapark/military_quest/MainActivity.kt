@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import com.google.android.gms.ads.*
@@ -27,19 +28,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel>() 
     private lateinit var adView: AdView
     private val adSize: AdSize
         get() {
-//            val display = windowManager.defaultDisplay
-//            val outMetrics = DisplayMetrics()
-//            display.getMetrics(outMetrics)
-//
-//            val density = outMetrics.density
-//
-//            var adWidthPixels = viewDataBinding.adViewContainer.width.toFloat()
-//            if (adWidthPixels == 0f) {
-//                adWidthPixels = outMetrics.widthPixels.toFloat()
-//            }
-
-//            val adWidth = getScreenWidth(this)
-
 
             val display = windowManager.defaultDisplay
             val outMetrics = DisplayMetrics()
@@ -79,12 +67,37 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel>() 
     override fun initViews(savedInstanceState: Bundle?) {
 
         Log.d("박태규", "Google Mobile Ads SDK Version: " + MobileAds.getVersion())
+
+        initBottomNavigation()
         initAdMob()
 
         if (PrefManager.getUserInfo().firstInit)
             showInitInfoFragment()
         else
             showHomeFragment()
+    }
+
+    private fun initBottomNavigation() {
+
+        viewDataBinding.mainBottomNavigationView.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.navigation_my_info -> {
+                    viewDataBinding.titleTextView.text = getString(R.string.common_my_info)
+                }
+                R.id.navigation_other_info -> {
+                    viewDataBinding.titleTextView.text = getString(R.string.common_other_info)
+                }
+                R.id.navigation_community -> {
+                    Toast.makeText(this, "열심히 준비 중이에요!", Toast.LENGTH_SHORT).show()
+//                    viewDataBinding.titleTextView.text = getString(R.string.common_community)
+                }
+                else -> {
+
+                }
+            }
+            true
+        }
+
     }
 
     private fun initAdMob() {
