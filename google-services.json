@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "791645189193",
+    "project_id": "military-quest",
+    "storage_bucket": "military-quest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791645189193:android:7797509399ec7bdf72bb98",
+        "android_client_info": {
+          "package_name": "com.tapark.military_quest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "791645189193-636ibroklo7m17akiifr2nj2l0n5l8tb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKGHT7vVc3l7FcnpakMZRKK6cDgJwqHw0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "791645189193-636ibroklo7m17akiifr2nj2l0n5l8tb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

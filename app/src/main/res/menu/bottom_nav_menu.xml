@@ -13,7 +13,7 @@
 
     <item
         android:id="@+id/navigation_community"
-        android:icon="@drawable/ic_baseline_castle_24"
+        android:icon="@drawable/outline_castle_24"
         android:title="@string/common_community" />
 
 

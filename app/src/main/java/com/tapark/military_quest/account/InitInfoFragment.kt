@@ -38,7 +38,7 @@ class InitInfoFragment: BaseFragment<FragmentInitInfoBinding, InitInfoViewModel>
         val granted = permissions.entries.all { it.value }
         Log.d("박태규", "permissions : $permissions / granted : $granted")
         if (granted) {
-            (activity as MainActivity).showImageSelectFragment()
+            (activity as InitInfoActivity).showImageSelectFragment()
         } else {
             if (PERMISSIONS.all { shouldShowRequestPermissionRationale(it) }) {
                 activity?.finish()
@@ -54,14 +54,10 @@ class InitInfoFragment: BaseFragment<FragmentInitInfoBinding, InitInfoViewModel>
 
     lateinit var userInfo: UserInfo
     var profileImage :Bitmap? = null
-    var serviceMonth = 18
+    var serviceMonth = MONTH_18
 
     override fun onBackPressed() {
-        if (userInfo.firstInit) {
-            activity?.finish()
-        } else {
-            (activity as MainActivity).removeFragment()
-        }
+        activity?.finish()
     }
 
     override fun addObserver() {
@@ -84,7 +80,7 @@ class InitInfoFragment: BaseFragment<FragmentInitInfoBinding, InitInfoViewModel>
             viewModel.apply {
                 birthDate.value = milliToYmd(currentTime - 694252944149)
                 enterDate.value = milliToYmd(currentTime)
-                retireDate.value = milliToYmd(currentTime + 63113904013)
+                retireDate.value = getAddedDate( enterDate.value!!, month = serviceMonth)
 
                 companyText.value = "육군"
                 rankText.value = "일병"
@@ -133,7 +129,7 @@ class InitInfoFragment: BaseFragment<FragmentInitInfoBinding, InitInfoViewModel>
 
                 activity?.let {
                     if (hasPermissions(it, PERMISSIONS)) {
-                        (activity as MainActivity).showImageSelectFragment()
+                        (activity as InitInfoActivity).showImageSelectFragment()
                     } else {
                         permissionRequester.launch(PERMISSIONS)
                     }
@@ -197,7 +193,9 @@ class InitInfoFragment: BaseFragment<FragmentInitInfoBinding, InitInfoViewModel>
                 if (profileImage != null) {
                     PrefManager.setBitmap(KEY_PROFILE_BITMAP, profileImage!!)
                 }
-                (activity as MainActivity).showHomeFragment()
+                val intent = Intent(requireContext(), MainActivity::class.java)
+                startActivity(intent)
+                activity?.finish()
             }
         }
     }

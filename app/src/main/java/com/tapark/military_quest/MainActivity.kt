@@ -1,21 +1,15 @@
 package com.tapark.military_quest
 
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
+import android.view.Gravity
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.fragment.app.Fragment
 import com.google.android.gms.ads.*
-import com.tapark.military_quest.account.ImageCropFragment
-import com.tapark.military_quest.account.ImageSelectFragment
-import com.tapark.military_quest.account.InitInfoFragment
 import com.tapark.military_quest.base.BaseActivity
 import com.tapark.military_quest.databinding.ActivityMainBinding
 import com.tapark.military_quest.home.HomeFragment
-import com.tapark.military_quest.utils.PrefManager
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -70,11 +64,17 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel>() 
 
         initBottomNavigation()
         initAdMob()
+        onClicked()
 
-        if (PrefManager.getUserInfo().firstInit)
-            showInitInfoFragment()
-        else
-            showHomeFragment()
+        showHomeFragment()
+    }
+
+    private fun onClicked() {
+
+        viewDataBinding.menuImageView.setOnClickListener {
+            viewDataBinding.drawerLayout.openDrawer(Gravity.LEFT)
+        }
+
     }
 
     private fun initBottomNavigation() {
@@ -143,27 +143,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel>() 
         adView.loadAd(adRequest)
     }
 
-    fun showInitInfoFragment() {
-        supportFragmentManager.beginTransaction()
-            .add(R.id.fragmentContainerView, InitInfoFragment()).addToBackStack(null).commitAllowingStateLoss()
-    }
-
     fun showHomeFragment() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainerView, HomeFragment()).addToBackStack(null).commitAllowingStateLoss()
     }
-
-    fun showImageSelectFragment() {
-        supportFragmentManager.beginTransaction()
-            .add(R.id.fragmentContainerView, ImageSelectFragment()).addToBackStack(null).commitAllowingStateLoss()
-    }
-
-    fun showImageCropFragment() {
-        supportFragmentManager.beginTransaction()
-            .add(R.id.fragmentContainerView, ImageCropFragment()).addToBackStack(null).commitAllowingStateLoss()
-    }
-
-
     fun removeFragment() {
         supportFragmentManager.popBackStack()
     }

@@ -4,16 +4,12 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import androidx.core.net.toUri
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
-import com.canhub.cropper.CropImageView
-import com.tapark.military_quest.MainActivity
 import com.tapark.military_quest.R
 import com.tapark.military_quest.base.BaseFragment
-import com.tapark.military_quest.data.UserInfo
 import com.tapark.military_quest.databinding.FragmentImageCropBinding
 
 class ImageCropFragment: BaseFragment<FragmentImageCropBinding, ImageCropViewModel>() {
@@ -21,7 +17,7 @@ class ImageCropFragment: BaseFragment<FragmentImageCropBinding, ImageCropViewMod
     override val layout: Int = R.layout.fragment_image_crop
 
     override fun onBackPressed() {
-        (activity as MainActivity).removeFragment()
+        (activity as InitInfoActivity).removeFragment()
     }
 
     override fun addObserver() {
@@ -50,13 +46,13 @@ class ImageCropFragment: BaseFragment<FragmentImageCropBinding, ImageCropViewMod
 
     private fun onClicked() {
         viewDataBinding.reSelectText.setOnClickListener {
-            (activity as MainActivity).removeFragment()
+            (activity as InitInfoActivity).removeFragment()
         }
 
         viewDataBinding.saveButton.setOnClickListener {
             setFragmentResult("imageSource", bundleOf("imageSource" to viewDataBinding.cropImageView.getCroppedImage()))
-            (activity as MainActivity).removeFragment()
-            (activity as MainActivity).removeFragment()
+            (activity as InitInfoActivity).removeFragment()
+            (activity as InitInfoActivity).removeFragment()
         }
     }
 }

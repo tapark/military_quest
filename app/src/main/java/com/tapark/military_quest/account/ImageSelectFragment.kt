@@ -15,7 +15,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.tapark.military_quest.MainActivity
 import com.tapark.military_quest.R
 import com.tapark.military_quest.account.adapter.FolderSelectAdapter
 import com.tapark.military_quest.account.adapter.ImageSelectAdapter
@@ -42,7 +41,7 @@ class ImageSelectFragment(): BaseFragment<FragmentImageSelectBinding, ImageSelec
             viewDataBinding.drawerLayout.closeDrawer(Gravity.LEFT)
             return
         }
-        (activity as MainActivity).removeFragment()
+        (activity as InitInfoActivity).removeFragment()
     }
 
     override fun addObserver() {
@@ -85,7 +84,7 @@ class ImageSelectFragment(): BaseFragment<FragmentImageSelectBinding, ImageSelec
             imageSelectAdapter = ImageSelectAdapter {
                 Log.d("박태규", "uri : $it")
                 setFragmentResult("imageUri", bundleOf("imageUri" to it))
-                (activity as MainActivity).showImageCropFragment()
+                (activity as InitInfoActivity).showImageCropFragment()
             }
         viewDataBinding.imageRecyclerView.adapter = imageSelectAdapter
         viewDataBinding.imageRecyclerView.layoutManager = GridLayoutManager(context, 3)

@@ -26,5 +26,7 @@
     <string name="sub_name_form">대한민국 %s %s</string>
     <string name="d_day_form">D%s%d</string>
 
+    <string name="common_notice">공지사항</string>
+    <string name="common_ask">문의하기 &amp; 건의사항</string>
 
 </resources>

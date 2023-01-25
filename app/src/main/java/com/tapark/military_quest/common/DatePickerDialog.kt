@@ -8,7 +8,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import com.tapark.military_quest.R
 import com.tapark.military_quest.databinding.DialogDatePickerBinding
+import java.text.SimpleDateFormat
 import java.time.Year
+import java.util.*
 
 class DatePickerDialog(private val date: String, val onConfirm: (String) -> Unit): DialogFragment() {
 
@@ -46,7 +48,9 @@ class DatePickerDialog(private val date: String, val onConfirm: (String) -> Unit
             val year = viewDataBinding.datePicker.year
             val month = viewDataBinding.datePicker.month + 1
             val day = viewDataBinding.datePicker.dayOfMonth
-            onConfirm("$year.$month.$day")
+
+
+            onConfirm("${String.format("%04d", year)}.${String.format("%02d", month)}.${String.format("%02d", day)}")
             dialog?.dismiss()
         }
     }

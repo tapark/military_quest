@@ -1,5 +1,6 @@
 package com.tapark.military_quest.home
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -7,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.tapark.military_quest.MainActivity
 import com.tapark.military_quest.R
+import com.tapark.military_quest.account.InitInfoActivity
 import com.tapark.military_quest.base.BaseFragment
 import com.tapark.military_quest.data.*
 import com.tapark.military_quest.databinding.FragmentHomeBinding
@@ -56,13 +58,9 @@ class HomeFragment: BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     private fun onClick() {
         viewDataBinding.modifyInfoButton.setOnClickListener {
-            (activity as MainActivity).showInitInfoFragment()
+            val intent = Intent(requireContext(), InitInfoActivity::class.java)
+            startActivity(intent)
         }
-//        viewDataBinding.addQuestButton.setOnClickListener {// 추가 케이스
-//            QuestEditDialog(-1, {}) {
-//                subQuestAdapter.addItemLast()
-//            }.show(parentFragmentManager, null)
-//        }
     }
 
     private fun initData() {
