@@ -76,6 +76,8 @@ class InitInfoFragment: BaseFragment<FragmentInitInfoBinding, InitInfoViewModel>
         userInfo = PrefManager.getUserInfo()
 
         if (userInfo.firstInit) {
+            viewDataBinding.titleText.setText(R.string.title_my_info_init)
+            viewDataBinding.completeButton.setText(R.string.common_start_mode)
             val currentTime = System.currentTimeMillis()
             viewModel.apply {
                 birthDate.value = milliToYmd(currentTime - 694252944149)
@@ -86,6 +88,8 @@ class InitInfoFragment: BaseFragment<FragmentInitInfoBinding, InitInfoViewModel>
                 rankText.value = "일병"
             }
         } else {
+            viewDataBinding.titleText.setText(R.string.title_my_info_edit)
+            viewDataBinding.completeButton.setText(R.string.common_modify_mode)
             userInfo.let {
                 viewModel.apply {
                     birthDate.value = it.birth.value
@@ -194,8 +198,9 @@ class InitInfoFragment: BaseFragment<FragmentInitInfoBinding, InitInfoViewModel>
                     PrefManager.setBitmap(KEY_PROFILE_BITMAP, profileImage!!)
                 }
                 val intent = Intent(requireContext(), MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(intent)
-                activity?.finish()
+//                activity?.finish()
             }
         }
     }

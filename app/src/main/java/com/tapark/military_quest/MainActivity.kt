@@ -1,5 +1,6 @@
 package com.tapark.military_quest
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
@@ -7,6 +8,7 @@ import android.view.Gravity
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.google.android.gms.ads.*
+import com.tapark.military_quest.account.InitInfoActivity
 import com.tapark.military_quest.base.BaseActivity
 import com.tapark.military_quest.databinding.ActivityMainBinding
 import com.tapark.military_quest.home.HomeFragment
@@ -75,6 +77,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel>() 
             viewDataBinding.drawerLayout.openDrawer(Gravity.LEFT)
         }
 
+        viewDataBinding.actionBarSubButton.setOnClickListener {
+            val intent = Intent(this, InitInfoActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun initBottomNavigation() {

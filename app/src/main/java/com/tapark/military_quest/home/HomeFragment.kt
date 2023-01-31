@@ -57,10 +57,7 @@ class HomeFragment: BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     private fun onClick() {
-        viewDataBinding.modifyInfoButton.setOnClickListener {
-            val intent = Intent(requireContext(), InitInfoActivity::class.java)
-            startActivity(intent)
-        }
+
     }
 
     private fun initData() {

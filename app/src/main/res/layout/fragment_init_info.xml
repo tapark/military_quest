@@ -9,521 +9,544 @@
             type="com.tapark.military_quest.account.InitInfoViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="24dp"
         android:background="@color/app_background"
+        android:orientation="vertical"
         android:focusable="true"
         android:clickable="true">
 
-        <TextView
-            android:id="@+id/tileText"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/actionBarLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="환영하오, 낯선이여"
-            android:textColor="#BFF2AA4C"
-            android:textStyle="bold"
-            android:textSize="20dp"
-            android:gravity="center"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            android:layout_height="56dp">
 
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="0dp"
+            <TextView
+                android:id="@+id/titleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_my_info_init"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/topGrayLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/white_5"
+            app:layout_constraintTop_toBottomOf="@id/actionBarLayout"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="36dp"
-            app:layout_constraintTop_toBottomOf="@id/tileText"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/completeButton">
+            android:layout_weight="1"
+            android:padding="24dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/completeButton">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/profileCardView"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        app:cardElevation="0dp"
-                        app:cardCornerRadius="999dp"
-                        app:cardBackgroundColor="@color/white_5"
-                        app:layout_constraintWidth_percent="0.5"
-                        app:layout_constraintDimensionRatio="1:1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                        <ImageView
-                            android:id="@+id/profileImageView"
-                            android:scaleType="centerCrop"
-                            android:background="@drawable/ic_baseline_person_4_24"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/profileCardView"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            app:cardElevation="0dp"
+                            app:cardCornerRadius="999dp"
+                            app:cardBackgroundColor="@color/white_5"
+                            app:layout_constraintWidth_percent="0.5"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent">
 
-                    </androidx.cardview.widget.CardView>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_marginStart="18dp"
-                        android:orientation="vertical"
-                        android:gravity="bottom"
-                        app:layout_constraintStart_toEndOf="@id/profileCardView"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="48dp">
-
-                            <LinearLayout
-                                android:id="@+id/nameLayout"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_marginBottom="6dp"
-                                android:orientation="horizontal"
-                                android:onClick="@{() -> viewModel.onNameClicked()}"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintStart_toStartOf="parent">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="이름"
-                                    android:layout_gravity="bottom"
-                                    android:textColor="@color/white"
-                                    android:textSize="16dp" />
-
-                                <ImageView
-                                    android:layout_width="15dp"
-                                    android:layout_height="15dp"
-                                    android:layout_marginStart="6dp"
-                                    android:layout_gravity="center|bottom"
-                                    android:layout_marginBottom="2dp"
-                                    android:src="@{viewModel.isPrivateName() ? @drawable/ic_outline_lock_24 : @drawable/ic_outline_lock_open_24}"
-                                    app:tint="@color/white_40"
-                                    tools:src="@drawable/ic_outline_lock_24"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="2dp"
-                                    android:layout_gravity="center|bottom"
-                                    android:text="@{viewModel.isPrivateName() ? @string/common_private : @string/common_public}"
-                                    android:textSize="12dp"
-                                    android:textColor="@color/white_40"
-                                    tools:text="@string/common_private"/>
-
-                            </LinearLayout>
-
-                            <EditText
-                                android:id="@+id/nameEditText"
-                                android:layout_width="0dp"
-                                android:layout_height="0dp"
-                                android:layout_marginBottom="6dp"
-                                android:background="@android:color/transparent"
-                                android:text="@{viewModel.nameText}"
-                                android:textSize="16dp"
-                                android:hint="이름을 입력해 주세요 "
-                                android:textColorHint="@color/white_20"
-                                android:textCursorDrawable="@drawable/edit_text_white_cursor"
-                                android:textColor="@color/white"
-                                android:maxLines="1"
-                                android:maxLength="12"
-                                android:gravity="end|bottom"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toEndOf="@id/nameLayout"/>
-
-                            <View
+                            <ImageView
+                                android:id="@+id/profileImageView"
+                                android:scaleType="centerCrop"
+                                android:background="@drawable/ic_baseline_person_4_24"
                                 android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="@color/white_20"
-                                app:layout_constraintBottom_toBottomOf="parent"/>
+                                android:layout_height="match_parent" />
 
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+                        </androidx.cardview.widget.CardView>
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="48dp">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="18dp"
+                            android:orientation="vertical"
+                            android:gravity="bottom"
+                            app:layout_constraintStart_toEndOf="@id/profileCardView"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent">
 
-                            <LinearLayout
-                                android:id="@+id/birthDayLayout"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_marginBottom="6dp"
-                                android:orientation="horizontal"
-                                android:onClick="@{() -> viewModel.onBirthClicked()}"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintStart_toStartOf="parent">
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp">
 
-                                <TextView
+                                <LinearLayout
+                                    android:id="@+id/nameLayout"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="생년월일"
-                                    android:textColor="@color/white"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="6dp"
+                                    android:orientation="horizontal"
+                                    android:onClick="@{() -> viewModel.onNameClicked()}"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="이름"
+                                        android:layout_gravity="bottom"
+                                        android:textColor="@color/white"
+                                        android:textSize="16dp" />
+
+                                    <ImageView
+                                        android:layout_width="15dp"
+                                        android:layout_height="15dp"
+                                        android:layout_marginStart="6dp"
+                                        android:layout_gravity="center|bottom"
+                                        android:layout_marginBottom="2dp"
+                                        android:src="@{viewModel.isPrivateName() ? @drawable/ic_outline_lock_24 : @drawable/ic_outline_lock_open_24}"
+                                        app:tint="@color/white_40"
+                                        tools:src="@drawable/ic_outline_lock_24"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="2dp"
+                                        android:layout_gravity="center|bottom"
+                                        android:text="@{viewModel.isPrivateName() ? @string/common_private : @string/common_public}"
+                                        android:textSize="12dp"
+                                        android:textColor="@color/white_40"
+                                        tools:text="@string/common_private"/>
+
+                                </LinearLayout>
+
+                                <EditText
+                                    android:id="@+id/nameEditText"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:layout_marginBottom="6dp"
+                                    android:background="@android:color/transparent"
+                                    android:text="@{viewModel.nameText}"
                                     android:textSize="16dp"
-                                    android:layout_gravity="bottom"
+                                    android:hint="이름을 입력해 주세요 "
+                                    android:textColorHint="@color/white_20"
+                                    android:textCursorDrawable="@drawable/edit_text_white_cursor"
+                                    android:textColor="@color/white"
+                                    android:maxLines="1"
+                                    android:maxLength="12"
+                                    android:gravity="end|bottom"
                                     app:layout_constraintTop_toTopOf="parent"
                                     app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"/>
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toEndOf="@id/nameLayout"/>
 
-                                <ImageView
-                                    android:layout_width="15dp"
-                                    android:layout_height="15dp"
-                                    android:layout_marginStart="6dp"
-                                    android:layout_gravity="center|bottom"
-                                    android:layout_marginBottom="2dp"
-                                    android:src="@{viewModel.isPrivateBirth() ? @drawable/ic_outline_lock_24 : @drawable/ic_outline_lock_open_24}"
-                                    app:tint="@color/white_40"/>
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:background="@color/white_20"
+                                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp">
+
+                                <LinearLayout
+                                    android:id="@+id/birthDayLayout"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="6dp"
+                                    android:orientation="horizontal"
+                                    android:onClick="@{() -> viewModel.onBirthClicked()}"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="생년월일"
+                                        android:textColor="@color/white"
+                                        android:textSize="16dp"
+                                        android:layout_gravity="bottom"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"/>
+
+                                    <ImageView
+                                        android:layout_width="15dp"
+                                        android:layout_height="15dp"
+                                        android:layout_marginStart="6dp"
+                                        android:layout_gravity="center|bottom"
+                                        android:layout_marginBottom="2dp"
+                                        android:src="@{viewModel.isPrivateBirth() ? @drawable/ic_outline_lock_24 : @drawable/ic_outline_lock_open_24}"
+                                        app:tint="@color/white_40"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="2dp"
+                                        android:layout_gravity="center|bottom"
+                                        android:text="@{viewModel.isPrivateBirth() ? @string/common_private : @string/common_public}"
+                                        android:textSize="12dp"
+                                        android:textColor="@color/white_40"/>
+
+                                </LinearLayout>
 
                                 <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="2dp"
-                                    android:layout_gravity="center|bottom"
-                                    android:text="@{viewModel.isPrivateBirth() ? @string/common_private : @string/common_public}"
-                                    android:textSize="12dp"
-                                    android:textColor="@color/white_40"/>
+                                    android:id="@+id/birthDayText"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:layout_marginBottom="6dp"
+                                    android:background="@android:color/transparent"
+                                    android:text="@{viewModel.birthDate}"
+                                    android:textSize="16dp"
+                                    android:textColor="@color/white"
+                                    android:maxLines="1"
+                                    android:maxLength="12"
+                                    android:gravity="end|bottom"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toEndOf="@id/birthDayLayout"/>
 
-                            </LinearLayout>
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:background="@color/white_20"
+                                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp">
+
+                        <LinearLayout
+                            android:id="@+id/companyLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="6dp"
+                            android:orientation="horizontal"
+                            android:onClick="@{() -> viewModel.onCompanyClicked()}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent">
 
                             <TextView
-                                android:id="@+id/birthDayText"
-                                android:layout_width="0dp"
-                                android:layout_height="0dp"
-                                android:layout_marginBottom="6dp"
-                                android:background="@android:color/transparent"
-                                android:text="@{viewModel.birthDate}"
-                                android:textSize="16dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="소속"
                                 android:textColor="@color/white"
-                                android:maxLines="1"
-                                android:maxLength="12"
-                                android:gravity="end|bottom"
+                                android:textSize="16dp"
+                                android:layout_gravity="bottom"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toEndOf="@id/birthDayLayout"/>
+                                app:layout_constraintStart_toStartOf="parent"/>
 
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="@color/white_20"
-                                app:layout_constraintBottom_toBottomOf="parent"/>
+                            <ImageView
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:layout_marginStart="6dp"
+                                android:layout_gravity="center|bottom"
+                                android:layout_marginBottom="2dp"
+                                android:src="@{viewModel.isPrivateCompany() ? @drawable/ic_outline_lock_24 : @drawable/ic_outline_lock_open_24}"
+                                app:tint="@color/white_40"/>
 
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="2dp"
+                                android:layout_gravity="center|bottom"
+                                android:text="@{viewModel.isPrivateCompany() ? @string/common_private : @string/common_public}"
+                                android:textSize="12dp"
+                                android:textColor="@color/white_40"/>
 
-                    </LinearLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp">
-
-                    <LinearLayout
-                        android:id="@+id/companyLayout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="6dp"
-                        android:orientation="horizontal"
-                        android:onClick="@{() -> viewModel.onCompanyClicked()}"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent">
+                        </LinearLayout>
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="소속"
-                            android:textColor="@color/white"
+                            android:id="@+id/companyText"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginBottom="6dp"
+                            android:background="@android:color/transparent"
+                            android:text="@{viewModel.companyText}"
                             android:textSize="16dp"
-                            android:layout_gravity="bottom"
+                            android:textColor="@color/white"
+                            android:maxLines="1"
+                            android:maxLength="12"
+                            android:gravity="end|bottom"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"/>
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/companyLayout"/>
 
-                        <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:layout_marginStart="6dp"
-                            android:layout_gravity="center|bottom"
-                            android:layout_marginBottom="2dp"
-                            android:src="@{viewModel.isPrivateCompany() ? @drawable/ic_outline_lock_24 : @drawable/ic_outline_lock_open_24}"
-                            app:tint="@color/white_40"/>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/white_20"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="2dp"
-                            android:layout_gravity="center|bottom"
-                            android:text="@{viewModel.isPrivateCompany() ? @string/common_private : @string/common_public}"
-                            android:textSize="12dp"
-                            android:textColor="@color/white_40"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/companyText"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_marginBottom="6dp"
-                        android:background="@android:color/transparent"
-                        android:text="@{viewModel.companyText}"
-                        android:textSize="16dp"
-                        android:textColor="@color/white"
-                        android:maxLines="1"
-                        android:maxLength="12"
-                        android:gravity="end|bottom"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/companyLayout"/>
-
-                    <View
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/white_20"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        android:layout_height="48dp">
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        <LinearLayout
+                            android:id="@+id/classLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="6dp"
+                            android:orientation="horizontal"
+                            android:onClick="@{() -> viewModel.onClassClicked()}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="계급"
+                                android:textColor="@color/white"
+                                android:textSize="16dp"
+                                android:layout_gravity="bottom"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"/>
 
-                    <LinearLayout
-                        android:id="@+id/classLayout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="6dp"
-                        android:orientation="horizontal"
-                        android:onClick="@{() -> viewModel.onClassClicked()}"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent">
+                            <ImageView
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:layout_marginStart="6dp"
+                                android:layout_gravity="center|bottom"
+                                android:layout_marginBottom="2dp"
+                                android:src="@{viewModel.isPrivateClass() ? @drawable/ic_outline_lock_24 : @drawable/ic_outline_lock_open_24}"
+                                app:tint="@color/white_40"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="2dp"
+                                android:layout_gravity="center|bottom"
+                                android:text="@{viewModel.isPrivateClass() ? @string/common_private : @string/common_public}"
+                                android:textSize="12dp"
+                                android:textColor="@color/white_40"/>
+
+                        </LinearLayout>
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="계급"
-                            android:textColor="@color/white"
+                            android:id="@+id/classText"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginBottom="6dp"
+                            android:background="@android:color/transparent"
+                            android:text="@{viewModel.rankText}"
                             android:textSize="16dp"
-                            android:layout_gravity="bottom"
+                            android:textColor="@color/white"
+                            android:maxLines="1"
+                            android:maxLength="12"
+                            android:gravity="end|bottom"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"/>
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/classLayout"/>
 
-                        <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:layout_marginStart="6dp"
-                            android:layout_gravity="center|bottom"
-                            android:layout_marginBottom="2dp"
-                            android:src="@{viewModel.isPrivateClass() ? @drawable/ic_outline_lock_24 : @drawable/ic_outline_lock_open_24}"
-                            app:tint="@color/white_40"/>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/white_20"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="2dp"
-                            android:layout_gravity="center|bottom"
-                            android:text="@{viewModel.isPrivateClass() ? @string/common_private : @string/common_public}"
-                            android:textSize="12dp"
-                            android:textColor="@color/white_40"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/classText"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_marginBottom="6dp"
-                        android:background="@android:color/transparent"
-                        android:text="@{viewModel.rankText}"
-                        android:textSize="16dp"
-                        android:textColor="@color/white"
-                        android:maxLines="1"
-                        android:maxLength="12"
-                        android:gravity="end|bottom"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/classLayout"/>
-
-                    <View
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/white_20"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        android:layout_height="48dp">
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        <LinearLayout
+                            android:id="@+id/enterDateLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="6dp"
+                            android:orientation="horizontal"
+                            android:onClick="@{() -> viewModel.onEnterDateClicked()}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="입대일"
+                                android:textColor="@color/white"
+                                android:textSize="16dp"
+                                android:layout_gravity="bottom"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"/>
 
-                    <LinearLayout
-                        android:id="@+id/enterDateLayout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="6dp"
-                        android:orientation="horizontal"
-                        android:onClick="@{() -> viewModel.onEnterDateClicked()}"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent">
+                            <ImageView
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:layout_marginStart="6dp"
+                                android:layout_gravity="center|bottom"
+                                android:layout_marginBottom="2dp"
+                                android:src="@{viewModel.isPrivateEnterDate() ? @drawable/ic_outline_lock_24 : @drawable/ic_outline_lock_open_24}"
+                                app:tint="@color/white_40"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="2dp"
+                                android:layout_gravity="center|bottom"
+                                android:text="@{viewModel.isPrivateEnterDate() ? @string/common_private : @string/common_public}"
+                                android:textSize="12dp"
+                                android:textColor="@color/white_40"/>
+
+                        </LinearLayout>
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="입대일"
-                            android:textColor="@color/white"
+                            android:id="@+id/enterDateText"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginBottom="6dp"
+                            android:background="@android:color/transparent"
+                            android:text="@{viewModel.enterDate}"
                             android:textSize="16dp"
-                            android:layout_gravity="bottom"
+                            android:textColor="@color/white"
+                            android:maxLines="1"
+                            android:maxLength="12"
+                            android:gravity="end|bottom"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"/>
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/enterDateLayout"/>
 
-                        <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:layout_marginStart="6dp"
-                            android:layout_gravity="center|bottom"
-                            android:layout_marginBottom="2dp"
-                            android:src="@{viewModel.isPrivateEnterDate() ? @drawable/ic_outline_lock_24 : @drawable/ic_outline_lock_open_24}"
-                            app:tint="@color/white_40"/>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/white_20"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="2dp"
-                            android:layout_gravity="center|bottom"
-                            android:text="@{viewModel.isPrivateEnterDate() ? @string/common_private : @string/common_public}"
-                            android:textSize="12dp"
-                            android:textColor="@color/white_40"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/enterDateText"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_marginBottom="6dp"
-                        android:background="@android:color/transparent"
-                        android:text="@{viewModel.enterDate}"
-                        android:textSize="16dp"
-                        android:textColor="@color/white"
-                        android:maxLines="1"
-                        android:maxLength="12"
-                        android:gravity="end|bottom"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/enterDateLayout"/>
-
-                    <View
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/white_20"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        android:layout_height="48dp">
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        <LinearLayout
+                            android:id="@+id/retireDateLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="6dp"
+                            android:orientation="horizontal"
+                            android:onClick="@{() -> viewModel.onRetireDateClicked()}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="전역일"
+                                android:textColor="@color/white"
+                                android:textSize="16dp"
+                                android:layout_gravity="bottom"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"/>
 
-                    <LinearLayout
-                        android:id="@+id/retireDateLayout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="6dp"
-                        android:orientation="horizontal"
-                        android:onClick="@{() -> viewModel.onRetireDateClicked()}"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent">
+                            <ImageView
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:layout_marginStart="6dp"
+                                android:layout_gravity="center|bottom"
+                                android:layout_marginBottom="2dp"
+                                android:src="@{viewModel.isPrivateRetireDate() ? @drawable/ic_outline_lock_24 : @drawable/ic_outline_lock_open_24}"
+                                app:tint="@color/white_40"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="2dp"
+                                android:layout_gravity="center|bottom"
+                                android:text="@{viewModel.isPrivateRetireDate() ? @string/common_private : @string/common_public}"
+                                android:textSize="12dp"
+                                android:textColor="@color/white_40"/>
+
+                        </LinearLayout>
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="전역일"
-                            android:textColor="@color/white"
+                            android:id="@+id/retireDateText"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginBottom="6dp"
+                            android:background="@android:color/transparent"
+                            android:text="@{viewModel.retireDate}"
                             android:textSize="16dp"
-                            android:layout_gravity="bottom"
+                            android:textColor="@color/white"
+                            android:maxLines="1"
+                            android:maxLength="12"
+                            android:gravity="end|bottom"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"/>
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/retireDateLayout"/>
 
-                        <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:layout_marginStart="6dp"
-                            android:layout_gravity="center|bottom"
-                            android:layout_marginBottom="2dp"
-                            android:src="@{viewModel.isPrivateRetireDate() ? @drawable/ic_outline_lock_24 : @drawable/ic_outline_lock_open_24}"
-                            app:tint="@color/white_40"/>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/white_20"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="2dp"
-                            android:layout_gravity="center|bottom"
-                            android:text="@{viewModel.isPrivateRetireDate() ? @string/common_private : @string/common_public}"
-                            android:textSize="12dp"
-                            android:textColor="@color/white_40"/>
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/retireDateText"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_marginBottom="6dp"
-                        android:background="@android:color/transparent"
-                        android:text="@{viewModel.retireDate}"
-                        android:textSize="16dp"
-                        android:textColor="@color/white"
-                        android:maxLines="1"
-                        android:maxLength="12"
-                        android:gravity="end|bottom"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/retireDateLayout"/>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/white_20"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-            </LinearLayout>
+                </LinearLayout>
 
-        </androidx.core.widget.NestedScrollView>
+            </androidx.core.widget.NestedScrollView>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/completeButton"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:text="시작하기"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:textColor="@color/app_background"
-            android:background="@drawable/background_button_round_b7b7b7"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/completeButton"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="@string/common_start"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textColor="@color/app_background"
+                android:background="@drawable/background_button_round_b7b7b7"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+
 </layout>

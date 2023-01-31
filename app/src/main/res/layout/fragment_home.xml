@@ -103,16 +103,6 @@
 
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/modifyInfoButton"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:padding="6dp"
-                    android:src="@drawable/ic_round_edit_24"
-                    app:tint="@color/white_60"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/profileCardView"/>
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
