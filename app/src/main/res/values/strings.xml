@@ -35,4 +35,7 @@
     <string name="title_my_info_init">내정보 입력</string>
     <string name="title_my_info_edit">내정보 수정</string>
 
+    <string name="ad_dialog_info_text">동영상을 시청해주시면 저희가 더 나은 버전을 만드는 데에 도움을 줄 수 있습니다. 지금 시청하시겠습니까?\n\n시청 후에는 12시간 동안 이 대화 상자가 표시되지 않습니다.</string>
+    <string name="watch_video">동영상 시청</string>
+
 </resources>
